@@ -8,6 +8,7 @@ packages = [{include = "lark_poetry"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+lark = "^1.1.4"
 
 
 [build-system]
