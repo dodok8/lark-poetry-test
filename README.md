@@ -1,5 +1,17 @@
 # 기말과제를 위해 정리 중
 
+## Poetry 가상 런타임 프로젝트 폴더 안에 만들기
+
+```shell
+poetry config virtualenvs.in-project true
+poetry config virtualenvs.path "./.venv"
+
+# 프로젝트 내부에 venv 새로 설치
+poetry install && poetry update
+```
+
+이렇게 하면 VS Code 등에서 알아서 잡아줌.
+
 ## 해야할 일 정리
 
 - [ ] EdgeQL 문법 탐구

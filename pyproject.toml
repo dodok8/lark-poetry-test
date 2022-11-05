@@ -10,6 +10,9 @@ packages = [{include = "lark_poetry"}]
 python = "^3.10"
 lark = "^1.1.4"
 
+[tool.poetry.dev-dependencies]
+autopep8 = "^2.0.0"
+
 
 [build-system]
 requires = ["poetry-core"]
