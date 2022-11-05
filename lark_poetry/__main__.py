@@ -9,4 +9,4 @@ print(__file__)
 eql = Lark.open('grammar/grammar.lark', rel_to=__file__, parser="lalr")
 
 print(l.parse("Hello, World!"))
-print(eql.parse("create"))
+print(eql.parse("create create"))
