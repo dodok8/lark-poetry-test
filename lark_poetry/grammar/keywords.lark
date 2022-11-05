@@ -1,9 +1,7 @@
-keywords : 
-    | current_reserved_keywords
+keywords : current_reserved_keywords
     | future_reserved_keywords
 
-current_reserved_keywords : 
-    | "__source__"
+current_reserved_keywords : "__source__"
     | "__subject__"
     | "__type__"
     | "__std__"
@@ -54,8 +52,7 @@ current_reserved_keywords :
     | "variadic"
     | "with"
 
-future_reserved_keywords :
-    | "analyze"
+future_reserved_keywords : "analyze"
     | "anyarray"
     | "begin"
     | "case"
