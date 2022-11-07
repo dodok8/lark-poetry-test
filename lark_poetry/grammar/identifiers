@@ -1,0 +1,7 @@
+identifier : plain_ident | quoted_ident
+plain_ident : ident_first ident_rest*
+//TODO:  ident_first :  //<any letter, underscore>
+//TODO: ident_rest : //<any letter, digits, underscore>
+quoted_ident : 	"`" qident_first qident_rest* "`"
+qident_first : /[^@]/ //<any character except "@">
+qident_rest : /./ //<any character>
