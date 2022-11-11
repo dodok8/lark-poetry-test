@@ -25,6 +25,7 @@ FLOORDIV : "//"
 CONCAT : "++"
 OP : / (?: >= | <= | != | \?= | \?!=) /x
 self : / [,()\[\].@;:+\-*/%^<>=&|] /x
+self : /[\{\}]/x
 
 #Literal
 NFCONST : / (?: (?: \d+ (?:\.\d+)? (?:[eE] (?:[+\-])? [0-9]+ ) ) | (?: \d+\.\d+)) n /x   # decimal 표현
@@ -38,7 +39,6 @@ SCONST :  / (?P<Q> ' | " ) (?: ( \\\\ | \\['"] | \n | . )*? ) (?P=Q) /mx # 일�
 #Identifier
 IDENT : /[^\W\d]\w*/x # 일반 식별자
 QIDENT : /`([^`]|``)*/x # quoted 식별자
-self : /[\{\}]/x 
 ARGUMENT : /\$(?:[0-9]+|[^\W\d]\w*|`(?:[^`]|``)*`)/x # 외부에서 입력하는 args
 
 #Convenient Error Only
