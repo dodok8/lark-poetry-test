@@ -48,14 +48,7 @@ NICONST : / ((?:[1-9]\d* | 0)n) /x # Bigint 표현
 FCONST : / (?: \d+ (?:\.\d+)? (?:[eE](?:[+\-])?[0-9]+) ) | (?: \d+\.\d+) /x # Float 표현
 ICONST  : / ([1-9]\d* | 0)(?![0-9]) /x
 BCONST : / (?:b) (?P<BQ> ' | ") (?: (\\\\ | \\['"] | \n | .)*? ) (?P=BQ) /mx # Byte string(multiline)
-RSCONST : / (?: r)? 
-            (?P<RQ>
-                (?: (?<=r) (?: ' | ") ) 
-                |
-                (?: (?<!r) (?: \$ (?: [A-Za-z_][A-Za-z_0-9]*)? \$ ))
-            )
-            (?: (\n | .)*? )
-            (?P=RQ) /mx # raw string (dollar string 포함, multiline)
+RSCONST : / (?: r)? (?P<RQ> (?: (?<=r) (?: ' | ") ) | (?: (?<!r) (?: \$ (?: [A-Za-z_][A-Za-z_0-9]*)? \$ )) ) (?: (\n | .)*? )(?P=RQ) /mx # raw string (dollar string 포함, multiline)
 SCONST :  / (?P<Q> ' | " ) (?: ( \\\\ | \\['"] | \n | . )*? ) (?P=Q) /mx # 일반 string, multiline
 
 IDENT : /[^\W\d]\w*/x # 일반 식별자
