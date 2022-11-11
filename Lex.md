@@ -26,10 +26,10 @@ str : "'" str_content* "'" | '"' str_content* '"'
 ## 공식코드에서 추출한 렉서 룰들
 ```lark
 # STATE_KEEP으로 이어짐
-[키워드(대문자)] : /\bblahblah\b/
-WS : /[^\S\n]+/
+[키워드(대문자)] : /\bblahblah\b/x
+WS : /[^\S\n]+/x
 NL : "\n"
-COMMENT : /\#.*?$/
+COMMENT : /\#.*?$/x
 
 ASSIGN : ":="
 REMASSIGN : "-="
@@ -47,8 +47,7 @@ NFCONST : / (?: (?: \d+ (?:\.\d+)? (?:[eE] (?:[+\-])? [0-9]+ ) ) | (?: \d+\.\d+)
 NICONST : / ((?:[1-9]\d* | 0)n) /x # Bigint 표현
 FCONST : / (?: \d+ (?:\.\d+)? (?:[eE](?:[+\-])?[0-9]+) ) | (?: \d+\.\d+) /x # Float 표현
 ICONST  : / ([1-9]\d* | 0)(?![0-9]) /x
-BCONST : / (?:b) (?P<BQ> ' | ") (?: (\\\\ | \\['"] | \n | .)*? ) (?P=BQ) /mx # Byte string
-# WTF 정규식에 그룹에 이름정해서 뒤에서 다시 똑같은거 매칭하는 기능이 있네요
+BCONST : / (?:b) (?P<BQ> ' | ") (?: (\\\\ | \\['"] | \n | .)*? ) (?P=BQ) /mx # Byte string(multiline)
 RSCONST : / (?: r)? 
             (?P<RQ>
                 (?: (?<=r) (?: ' | ") ) 
@@ -56,13 +55,13 @@ RSCONST : / (?: r)?
                 (?: (?<!r) (?: \$ (?: [A-Za-z_][A-Za-z_0-9]*)? \$ ))
             )
             (?: (\n | .)*? )
-            (?P=RQ) /mx # raw string (dollar string 포함)
-SCONST :  / (?P<Q> ' | " ) (?: ( \\\\ | \\['"] | \n | . )*? ) (?P=Q) /mx # 일반 string
+            (?P=RQ) /mx # raw string (dollar string 포함, multiline)
+SCONST :  / (?P<Q> ' | " ) (?: ( \\\\ | \\['"] | \n | . )*? ) (?P=Q) /mx # 일반 string, multiline
 
-IDENT : /[^\W\d]\w*/ # 일반 식별자
-QIDENT : /`([^`]|``)*/ # quoted 식별자
-self : /[\{\}]/
-ARGUMENT : /\$(?:[0-9]+|[^\W\d]\w*|`(?:[^`]|``)*`)/ # 외부에서 입력하는 args
+IDENT : /[^\W\d]\w*/x # 일반 식별자
+QIDENT : /`([^`]|``)*/x # quoted 식별자
+self : /[\{\}]/x 
+ARGUMENT : /\$(?:[0-9]+|[^\W\d]\w*|`(?:[^`]|``)*`)/x # 외부에서 입력하는 args
 
 BADSCONST : /[rb]?(['"] | (?: \$(?:[A-Za-z_][A-Za-z_0-9]*)?\$))[^\n]*/mx
 BADIDENT : /__[^\W\d]\w*__|`__([^`]|``)*__`(?!`)/x
