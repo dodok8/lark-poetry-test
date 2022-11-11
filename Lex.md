@@ -29,7 +29,7 @@ str : "'" str_content* "'" | '"' str_content* '"'
 [키워드(대문자)] : /\bblahblah\b/x
 WS : /[^\S\n]+/x
 NL : "\n"
-COMMENT : /\#.*?$/x
+COMMENT : /\#.*?$/ix
 
 ASSIGN : ":="
 REMASSIGN : "-="
