@@ -1,0 +1,132 @@
+start : _keyword | WS | NL | COMMENT | ASSIGN | REMASSIGN | ADDASSIGN | ARROW | COALESCE | FULLQUAL | BACKLINK | FLOORDIV
+    | CONCAT | OP | PUNCT | BRACE | NFCONST | NICONST | FCONST | ICONST | BCONST | RSCONST | SCONST
+    | IDENT | QIDENT | ARGUMENT | UNKNOWN
+
+WS: /[^\S\n]+/x
+NL : "\r\n" | "\n"
+COMMENT.6 : /\#.*?$/mx
+_keyword : _reserved | _unreserved
+
+_reserved : AGGREGATE | ALTER | AND | ANY | COMMIT | CREATE | DELETE | DETACHED | DISTINCT | DROP | ELSE | EMPTY | EXISTS | FALSE | FILTER | FUNCTION | GET | GROUP | IF | ILIKE | IN | INSERT | IS | LIKE | LIMIT | MODULE | NOT | OFFSET | OR | ORDER | OVER | PARTITION | ROLLBACK | SELECT | SET | SINGLETON | START | TRUE | UPDATE | UNION | WITH
+_unreserved : ABSTRACT | ACTION | AFTER | ARRAY | AS | ASC | ATOM | ANNOTATION | BEFORE | BY | CONCEPT | CONSTRAINT | DATABASE | DESC | EVENT | EXTENDING | FINAL | FIRST | FOR | FROM | INDEX | INITIAL | LAST | LINK | MAP | MIGRATION | OF | ON | POLICY | PROPERTY | REQUIRED | RENAME | TARGET | THEN | TO | TRANSACTION | TUPLE | VALUE | VIEW
+
+//RESERVED
+AGGREGATE.6 : /\bAGGREGATE\b/i
+ALTER.6 : /\bALTER\b/i
+AND.6 : /\bAND\b/i
+ANY.6 : /\bANY\b/i
+COMMIT.6 : /\bCOMMIT\b/i
+CREATE.6 : /\bCREATE\b/i
+DELETE.6 : /\bDELETE\b/i
+DETACHED.6 : /\bDETACHED\b/i
+DISTINCT.6 : /\bDISTINCT\b/i
+DROP.6 : /\bDROP\b/i
+ELSE.6 : /\bELSE\b/i
+EMPTY.6 : /\bEMPTY\b/i
+EXISTS.6 : /\bEXISTS\b/i
+FALSE.6 : /\bFALSE\b/i
+FILTER.6 : /\bFILTER\b/i
+FUNCTION.6 : /\bFUNCTION\b/i
+GET.6 : /\bGET\b/i
+GROUP.6 : /\bGROUP\b/i
+IF.6 : /\bIF\b/i
+ILIKE.6 : /\bILIKE\b/i
+IN.6 : /\bIN\b/i
+INSERT.6 : /\bINSERT\b/i
+IS.6 : /\bIS\b/i
+LIKE.6 : /\bLIKE\b/i
+LIMIT.6 : /\bLIMIT\b/i
+MODULE.6 : /\bMODULE\b/i
+NOT.6 : /\bNOT\b/i
+OFFSET.6 : /\bOFFSET\b/i
+OR.6 : /\bOR\b/i
+ORDER.6 : /\bORDER\b/i
+OVER.6 : /\bOVER\b/i
+PARTITION.6 : /\bPARTITION\b/i
+ROLLBACK.6 : /\bROLLBACK\b/i
+SELECT.6 : /\bSELECT\b/i
+SET.6 : /\bSET\b/i
+SINGLETON.6 : /\bSINGLETON\b/i
+START.6 : /\bSTART\b/i
+TRUE.6 : /\bTRUE\b/i
+UPDATE.6 : /\bUPDATE\b/i
+UNION.6 : /\bUNION\b/i
+WITH.6 : /\bWITH\b/i
+//unreserved
+ABSTRACT.6 : /\bABSTRACT\b/i
+ACTION.6 : /\bACTION\b/i
+AFTER.6 : /\bAFTER\b/i
+ARRAY.6 : /\bARRAY\b/i
+AS.6 : /\bAS\b/i
+ASC.6 : /\bASC\b/i
+ATOM.6 : /\bATOM\b/i
+ANNOTATION.6 : /\bANNOTATION\b/i
+BEFORE.6 : /\bBEFORE\b/i
+BY.6 : /\bBY\b/i
+CONCEPT.6 : /\bCONCEPT\b/i
+CONSTRAINT.6 : /\bCONSTRAINT\b/i
+DATABASE.6 : /\bDATABASE\b/i
+DESC.6 : /\bDESC\b/i
+EVENT.6 : /\bEVENT\b/i
+EXTENDING.6 : /\bEXTENDING\b/i
+FINAL.6 : /\bFINAL\b/i
+FIRST.6 : /\bFIRST\b/i
+FOR.6 : /\bFOR\b/i
+FROM.6 : /\bFROM\b/i
+INDEX.6 : /\bINDEX\b/i
+INITIAL.6 : /\bINITIAL\b/i
+LAST.6 : /\bLAST\b/i
+LINK.6 : /\bLINK\b/i
+MAP.6 : /\bMAP\b/i
+MIGRATION.6 : /\bMIGRATION\b/i
+OF.6 : /\bOF\b/i
+ON.6 : /\bON\b/i
+POLICY.6 : /\bPOLICY\b/i
+PROPERTY.6 : /\bPROPERTY\b/i
+REQUIRED.6 : /\bREQUIRED\b/i
+RENAME.6 : /\bRENAME\b/i
+TARGET.6 : /\bTARGET\b/i
+THEN.6 : /\bTHEN\b/i
+TO.6 : /\bTO\b/i
+TRANSACTION.6 : /\bTRANSACTION\b/i
+TUPLE.6 : /\bTUPLE\b/i
+VALUE.6 : /\bVALUE\b/i
+VIEW.6 : /\bVIEW\b/i
+
+//Symbol 
+ASSIGN : ":="
+REMASSIGN : "-="
+ADDASSIGN : "+="
+ARROW : "->"
+COALESCE : "??"
+FULLQUAL : "::"
+BACKLINK : ".<"
+FLOORDIV : "//"
+CONCAT : "++"
+OP : / (?: >= | <= | != | \?= | \?!=) /x
+PUNCT : / [,()\[\].@;:+\-*\/%^<>=&|] /x
+BRACE : /[\{\}]/x
+
+//Literal
+NFCONST.2 : / (?: (?: \d+ (?:\.\d+)? (?:[eE] (?:[+\-])? [0-9]+ ) ) | (?: \d+\.\d+)) n /x   // decimal 표현
+NICONST.2 : / ((?:[1-9]\d* | 0)n) /x // Bigint 표현
+FCONST.2 : / (?: \d+ (?:\.\d+)? (?:[eE](?:[+\-])?[0-9]+) ) | (?: \d+\.\d+) /x // Float 표현
+ICONST.2  : / ([1-9]\d* | 0)(?![0-9]) /x
+BCONST.2 : / (?:b) (?P<BQ> ' | ") (?: (\\\\ | \\['"] | \n | .)*? ) (?P=BQ) /sx //Byte string(multiline)
+RSCONST.2 : / (?: r)? (?P<RQ> (?: (?<=r) (?: ' | ") ) | (?: (?<!r) (?: \$ (?: [A-Za-z_][A-Za-z_0-9]*)? \$ )) ) (?: (\n | .)*? )(?P=RQ) /sx // raw string (dollar string 포함, multiline)
+SCONST.2 :  / (?P<Q> ' | " ) (?: ( \\\\ | \\['"] | \n | . )*? ) (?P=Q) /sx // 일반 string, multiline
+
+//Identifier
+IDENT : /[^\W\d]\w*/x // 일반 식별자
+QIDENT : /`([^`]|``)*`/x // quoted 식별자
+ARGUMENT : /\$(?:[0-9]+|[^\W\d]\w*|`(?:[^`]|``)*`)/x //# 외부에서 입력하는 args
+
+//Error Only
+BADSCONST.-2 : /[rb]?(['"] | (?: \$(?:[A-Za-z_][A-Za-z_0-9]*)?\$))[^\n]*/sx
+BADIDENT.-2 : /__[^\W\d]\w*__|`__([^`]|``)*__`(?!`)/x
+BADARGUMENT.-2 : /\$[0-9]+[^\W\d]\w*/x
+//else
+UNKNOWN.-2 : /./
+
+%ignore WS
+%ignore NL
